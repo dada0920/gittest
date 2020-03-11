@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.BoardVO;
+import domain.SearchVO;
 import lombok.AllArgsConstructor;
 import persistence.BoardDAO;
 
@@ -20,6 +21,13 @@ public class ModifyAction implements Action {
 		
 		//bno 가져오기
 		int bno = Integer.parseInt(req.getParameter("bno"));
+		
+		
+		//검색정보 가져오기
+		String criteria = req.getParameter("criteria");
+		String keyword = req.getParameter("keyword");		
+		
+		
 		//DB작업(bno에 해당하는 내용 가져오기)
 		BoardDAO dao = new BoardDAO();
 		
@@ -28,6 +36,7 @@ public class ModifyAction implements Action {
 		if(vo!=null) {
 			path+="?page="+page;
 			req.setAttribute("vo", vo);
+			req.setAttribute("search", new SearchVO(criteria,keyword));
 		}		
 		return new ActionForward(path, false);
 	}

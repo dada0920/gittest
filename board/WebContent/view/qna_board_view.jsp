@@ -74,14 +74,14 @@ $(function(){
 	let formObj = $("form[role='form']");
 	
 	
-	$("#list").click(function(){
-		let criteria=$("input[name='criteria']").val();
-		if(criteria==''){
+	$("#list").click(function(){		
+		let criteria = $("input[name='criteria']").val();
+		if(criteria===''){
 			formObj.attr("action","qList.do");
 		}else{
 			formObj.attr("action","qSearch.do");
-		}
-		formObj.submit();
+		}		
+		formObj.submit();		
 	})
 	$("#modify").click(function(){
 		//form action 지정하기

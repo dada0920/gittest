@@ -20,7 +20,7 @@
 						<option value="name" <c:out value="${search.criteria=='name'?'selected':''}"/>>name</option>
 					</select>
 					<input type="text" name="keyword" value="${search.keyword}"/>
-					<input type="hidden" name="page" value="${pageVO.page}"/>
+					<input type="hidden" name="page" value="${pageVO.page}" />
 					<button type="button" class="btn btn-primary">검색</button>
 				</form>
 			</div>

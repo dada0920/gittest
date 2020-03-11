@@ -23,16 +23,17 @@ public class ReadCountUpdateAction implements Action {
 		//bno 가져오기
 		int bno = Integer.parseInt(req.getParameter("bno"));
 		
+		
 		//검색정보 가져오기
-		String criteria=req.getParameter("criteria");
-		String keyword=URLEncoder.encode(req.getParameter("keyword"),"utf-8");
+		String criteria = req.getParameter("criteria");
+		String keyword = URLEncoder.encode(req.getParameter("keyword"), "utf-8");
+		
+		
 		BoardDAO dao = new BoardDAO();
 		//조회수 업데이트		
 		dao.readCountUpdate(bno);
-		
-		
+				
 		path+="?bno="+bno+"&page="+page+"&criteria="+criteria+"&keyword="+keyword;
-		
 		
 		return new ActionForward(path, true);
 	}

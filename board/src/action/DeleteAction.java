@@ -23,10 +23,11 @@ public class DeleteAction implements Action {
 		// 페이지 나누기 후에 추가된 정보
 		int page = Integer.parseInt(req.getParameter("page"));
 		
-		//검색 정보 가져오기
+		// 검색 정보 가져오기
+		String criteria = req.getParameter("criteria");
+		String keyword = URLEncoder.encode(req.getParameter("keyword"), "utf-8");		
 		
-		String criteria=req.getParameter("criteria");
-		String keyword=URLEncoder.encode(req.getParameter("keyword"),"utf-8");
+		
 		//DB작업 - 비밀번호 확인
 		BoardDAO dao = new BoardDAO();
 		int result=dao.passwordCheck(bno, password);

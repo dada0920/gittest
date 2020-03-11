@@ -44,6 +44,8 @@ public class ReplyAction implements Action {
 			criteria=dataMap.get("criteria");
 			keyword=URLEncoder.encode(dataMap.get("keyword"), "utf-8");
 		}
+		
+		
 		BoardVO vo=new BoardVO();		
 		vo.setName(name);
 		vo.setTitle(title);
@@ -61,11 +63,12 @@ public class ReplyAction implements Action {
 			path="";
 		}else {
 			if(!criteria.isEmpty()) {
-				path+="?page="+page+"&criteria="+criteria+"&keyword="+keyword;
-		}else {
-				path+="?Page="+page;
-				}
+				path="qSearch.do?page="+page+"&criteria="+criteria+"&keyword="+keyword;
+			}else {
+				path+="?page="+page;
 			}
+		}
+		
 		return new ActionForward(path, true);
 	}
 

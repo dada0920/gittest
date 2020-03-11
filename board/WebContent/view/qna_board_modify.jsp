@@ -74,6 +74,8 @@
 			</div>
 			<input type="hidden" name="bno" value="${vo.bno}" />
 			<input type="hidden" name="page" value='<%=request.getParameter("page")%>' />
+			<input type="hidden" name="criteria" value="${search.criteria}" />
+			<input type="hidden" name="keyword" value="${search.keyword}" />
 		</form>
 	</div>
 </section>

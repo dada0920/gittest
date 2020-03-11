@@ -1,11 +1,13 @@
 package action;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.BoardVO;
+import domain.SearchVO;
 import lombok.AllArgsConstructor;
 import persistence.BoardDAO;
 import upload.UploadUtil;
@@ -33,13 +35,20 @@ public class UpdateAction implements Action {
 			attach=dataMap.get("file");
 		}
 		String password = dataMap.get("password");
+				
+		String criteria="";
+		String keyword="";
+		if(dataMap.containsKey("criteria")) {		
+			criteria=dataMap.get("criteria");
+			keyword=URLEncoder.encode(dataMap.get("keyword"), "utf-8");
+		}
 		
 		//해당글의 비밀번호가 맞는지 확인하기
 		BoardDAO dao = new BoardDAO();
 		int result = dao.passwordCheck(Integer.parseInt(bno), password);
 		
 		if(result==0) { //비밀번호가 틀렸음
-			path="qModify.do?bno="+bno+"&page="+page;
+			path="qModify.do?bno="+bno+"&page="+page+"&criteria="+criteria+"&keyword="+keyword;
 			return new ActionForward(path, true);
 		}		
 		
@@ -53,9 +62,9 @@ public class UpdateAction implements Action {
 		result = dao.updateArticle(vo);
 		
 		if(result>0) {
-			path+="?bno="+bno+"&page="+page;
+			path+="?bno="+bno+"&page="+page+"&criteria="+criteria+"&keyword="+keyword;
 		}else {
-			path="qModify.do?bno="+bno+"&page="+page;
+			path="qModify.do?bno="+bno+"&page="+page+"&criteria="+criteria+"&keyword="+keyword;
 		}
 		
 		//수정이 완료되면 수정이 잘 되었는지 현재 게시물 보여주기

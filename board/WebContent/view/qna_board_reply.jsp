@@ -50,9 +50,8 @@
 			<input type="hidden" value="${vo.re_lev}"  name="re_lev"/>
 			<input type="hidden" value="${vo.re_seq}"  name="re_seq"/>
 			<input type="hidden" name="page" value='<%=request.getParameter("page")%>' />
-			<input type="hidden" name="cirteria" value='<%=request.getParameter(search.criteria)%>' />
-			<input type="hidden" name="keyword" value='<%=request.getParameter(search.keyword)%>' />
-
+			<input type="hidden" name="criteria" value='${search.criteria}' />
+			<input type="hidden" name="keyword" value='${search.keyword}' />
 		</form>
 	</div>
 </section>
